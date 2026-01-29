@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/login.css">
+    <title>Login</title>
+</head>
+<body>
+    
+   <div class="root">
+       
+        <div class="container" >
+             <div class="text">
+                 <h1 >ContaCerta</h1>
+                             <p class="resumo">Acesso ao Sistema</p>
+             </div>
+            
+            <div class="entradas">
+                
+                <input type="text" class="nome"  placeholder="E-mail">
+                <input type="password" class="senha"  placeholder="Senha">
+                <p class="resul"></p>
+               
+            </div>
+            <div class="btao"><button type="button" class="btn">Enviar</button></div>
+          <a href="{{url_for('setup')}}">Singin</a>
+            <script src="../static/login.js"></script>
+        </div>
+   </div>
+</body>
+</html>
