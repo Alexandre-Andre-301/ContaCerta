@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,27 +8,54 @@
     <title>Painel Principal</title>
 </head>
 <body>
-    <div class="side-bar">
-        <div class="logo-bar">
-            <img src="../static/logo.png" class="logo">
-        </div>
-        <div class="linha"></div><div class="cards">
-            
-                <div class="card"><a href="#">Dashbord</a></div>
-        </div>
-        <div class="linha"></div>
-        <div class="cards">
-            <div class="card"><a href="#">Vendas</a></div>
-            <div class="card"><a href="#">Protudos</a></div>
-            <div class="card"><a href="#">Estoque</a></div>
-        <div class="linha"></div>
-            <div class="card"><a href="#">Sair</a></div>
-        </div>
-        </div>
+    <div class="root">
+    
+        <div class="side-bar">
+            <div class="logo-bar">
+                <img src="../static/logo.png" class="logo">
+            </div>
+            <div class="linha"></div><div class="cards">
+    
+                    <div class="card"><a href="#">Painel</a></div>
+            </div>
+            <div class="cards">
+                <div class="card"><a href="#">Vendas</a></div>
+                <div class="card"><a href="#">Protudos</a></div>
+                <div class="card"><a href="#">Estoque</a></div>
+            <div class="linha"></div>
+                <div class="card"><a href="{{url_for('logout')}}">Sair</a></div>
+            </div>
+            </div>
+    <div class="main-content">
         
-
+                <div class="header">
         
+                            <h1>Painel Principal</h1>
+                            <div class="nav">
+                                <div class="notification"><img src="" alt="notification"></div>
+                                <div class="avatar"><img src="" alt="avatar-user"></div>
+                            </div>
+                        </div>
+                <div class="main-cards">
+                    <div class="main-card">
+                        <p>Vendas de Hoje</p>
+                        <h1 class="vendas">25.000Kzs</h1>
+                    </div>
+                    
+                    <div class="main-card">
+                        <p>Produtos</p>
+                        <h1 class="produtos">18</h1>
+                    </div>
+                    <div class="main-card">
+                        <p>Lucro</p>
+                        <h1 class="lucro">8.00Kzs</h1>
+                    </div>
+                </div>
+                
     </div>
+            </div>
+
+
     <script src="../static/admin.js"></script>
 </body>
 </html>
