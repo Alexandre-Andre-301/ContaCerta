@@ -1,0 +1,54 @@
+.vendas-container {
+    padding: 2.5rem;
+}
+
+.analytics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: 25px;
+}
+
+.chart-card {
+    background-color: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.chart-info h3 {
+    color: #f8fafc;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.chart-info p {
+    color: #94a3b8;
+    font-size: 0.85rem;
+    margin-bottom: 20px;
+}
+
+.canvas-wrapper {
+    height: 300px;
+    width: 100%;
+    position: relative;
+}
+
+.btn-new-venda {
+    background-color: #22c55e;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: 0.3s;
+}
+
+.btn-new-venda:hover {
+    background-color: #16a34a;
+    transform: translateY(-2px);
+}

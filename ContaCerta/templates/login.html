@@ -1,32 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-ao">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ContaCerta - Login</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../static/login.css">
-    <title>Login</title>
 </head>
 <body>
     
-   <div class="root">
+   <div class="login-wrapper">
        
-        <div class="container" >
-             <div class="text">
-                 <h1 >ContaCerta</h1>
-                             <p class="resumo">Acesso ao Sistema</p>
+        <div class="login-card animate-entry">
+             
+             <div class="header-section">
+                 <h1>ContaCerta</h1>
+                 <p class="subtitle">Acesso ao sistema</p>
              </div>
             
-            <div class="entradas">
+             <form class="login-form">
+                <div class="input-group">
+                    <label for="email">E-mail</label>
+                    <input type="text" id="email" class="input-field nome" placeholder="exemplo@email.com" autocomplete="email">
+                </div>
+
+                <div class="input-group">
+                    <label for="password">Senha</label>
+                    <input type="password" id="password" class="input-field senha" placeholder="••••••••" autocomplete="current-password">
+                </div>
+
+                <div class="error-container">
+                    <p class="resul"></p>
+                </div>
                 
-                <input type="text" class="nome"  placeholder="E-mail">
-                <input type="password" class="senha"  placeholder="Senha">
-                <p class="resul"></p>
-               
-            </div>
-            <div class="btao"><button type="button" class="btn">Enviar</button></div>
-          <a href="{{url_for('setup')}}">Singin</a>
-            <script src="../static/login.js"></script>
+                <button type="button" class="btn-primary">
+                    <span class="btn-text">Entrar</span>
+                    <span class="loader"></span> </button>
+             </form>
+
+             <div class="footer-links">
+                 <p>Não tem uma conta? <a href="{{url_for('setup')}}">Criar conta</a></p>
+             </div>
+
         </div>
    </div>
+
+   <script src="../static/login.js"></script>
 </body>
-</html>
+</html

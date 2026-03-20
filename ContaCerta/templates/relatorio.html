@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-ao">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ContaCerta - Relatórios</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/admin.css">
+    <link rel="stylesheet" href="../static/relatorios.css">
+</head>
+<body>
+    <div class="layout-wrapper">
+         <aside class="sidebar">
+    <div class="logo-area">
+        <div class="logo-icon"><i class="ri-store-3-fill"></i></div>
+        <span class="logo-text">ContaCerta</span>
+    </div>
+
+   <nav class="nav-links">
+    <a href="{{url_for('admin_painel')}}" class="nav-item {{ 'active' if request.endpoint == 'admin_painel' }}">
+        <i class="ri-dashboard-fill"></i>
+        <span>Dashboard</span>
+    </a>
+    <a href="{{url_for('vendas')}}" class="nav-item {{ 'active' if request.endpoint == 'vendas' }}">
+        <i class="ri-bar-chart-box-line"></i>
+        <span>Vendas</span>
+    </a>
+    <a href="{{url_for('produtos')}}" class="nav-item {{ 'active' if request.endpoint == 'produtos' }}">
+        <i class="ri-box-3-line"></i>
+        <span>Produtos</span>
+    </a>
+   <a href="{{url_for('relatorios')}}" class="nav-item {{ 'active' if request.endpoint == 'relatorios' }}">
+    <i class="ri-file-list-3-line"></i>
+    <span>Relatórios</span>
+</a>
+</nav>
+
+    <div class="nav-footer">
+        <a href="{{url_for('logout')}}" class="nav-item logout">
+            <i class="ri-logout-box-line"></i>
+            <span>Sair</span>
+        </a>
+    </div>
+</aside>
+<main class="main-content">
+    <header class="topbar">
+        <h2 class="page-title">Relatórios de Conferência</h2>
+        <button class="btn-primary" onclick="abrirModalConferencia()">
+            <i class="ri-file-add-line"></i> Criar Formulário
+        </button>
+    </header>
+
+    <div class="relatorios-container">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span class="stat-label">Vendas Registadas (Mês)</span>
+                <h2 id="totalVendasMes">0,00 AOA</h2>
+                <i class="ri-money-dollar-circle-line icon-bg"></i>
+            </div>
+            <div class="stat-card">
+                <span class="stat-label">Quebras de Caixa</span>
+                <h2 id="totalQuebras" class="text-red" style="color: #ef4444;">0</h2>
+                <i class="ri-error-warning-line icon-bg"></i>
+            </div>
+        </div>
+
+        <div class="table-container animate-up">
+            <div class="table-header">
+                <h3>Histórico de Fechamentos Diários</h3>
+            </div>
+            <table class="custom-table">
+                <thead>
+                    <tr>
+                        <th>Data/Hora</th>
+                        <th>Venda Esperada</th>
+                        <th>Dinheiro + TPA</th>
+                        <th>Diferença</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="listaFechamentos">
+                    </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="modalConferencia" class="modal-overlay" style="display:none;">
+        <div class="modal-content modal-largo animate-pop">
+            <div class="modal-header">
+                <div>
+                    <h3>Nova Conferência de Bar</h3>
+                    <p class="text-muted" style="font-size: 0.8rem;">Controle de Inicial vs Final</p>
+                </div>
+                <button class="btn-close" onclick="fecharModalConferencia()">&times;</button>
+            </div>
+            
+            <div class="modal-body" style="max-height: 60vh; overflow-y: auto;">
+                <table class="custom-table">
+                    <thead>
+                        <tr>
+                            <th>Produto</th>
+                            <th>Inicial</th>
+                            <th>Final (Restou)</th>
+                            <th>Vendido</th>
+                            <th>Subtotal</th>
+                        </tr>
+                    </thead>
+                    <tbody id="corpoConferencia">
+                        </tbody>
+                </table>
+
+                <div class="financeiro-section" style="background: #0f172a; padding: 20px; border-radius: 12px; margin-top: 20px; border: 1px solid #334155;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
+                        <div class="input-group">
+                            <label style="color: #94a3b8; display: block; margin-bottom: 5px; font-size: 0.8rem;">DINHEIRO EM MÃO</label>
+                            <input type="number" id="cashInput" oninput="validarFinanceiro()" placeholder="0.00" style="width: 100%; padding: 10px; background: #1e293b; border: 1px solid #334155; color: white; border-radius: 8px;">
+                        </div>
+                        <div class="input-group">
+                            <label style="color: #94a3b8; display: block; margin-bottom: 5px; font-size: 0.8rem;">TPA (MULTICAIXA)</label>
+                            <input type="number" id="tpaInput" oninput="validarFinanceiro()" placeholder="0.00" style="width: 100%; padding: 10px; background: #1e293b; border: 1px solid #334155; color: white; border-radius: 8px;">
+                        </div>
+                    </div>
+                    
+                    <div id="statusCaixa" style="padding: 15px; border-radius: 8px; background: rgba(255, 255, 255, 0.02); border: 1px solid #334155;">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span style="color: #94a3b8;">Total das Garrafas: <b id="valorEsperado" style="color: white;">0,00 AOA</b></span>
+                            <span style="color: #94a3b8;">Total no Bolso/TPA: <b id="valorInformado" style="color: #22c55e;">0,00 AOA</b></span>
+                        </div>
+                        <p id="msgAlerta" style="color: #ef4444; display: none; margin-top: 10px; font-weight: 600; font-size: 0.9rem;">
+                            <i class="ri-error-warning-fill"></i> O valor físico é inferior ao valor das vendas!
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer" style="margin-top: 20px;">
+                <button class="btn-primary btn-full" onclick="salvarRelatorioFinal()">
+                    <i class="ri-save-3-line"></i> Finalizar e Salvar Relatório
+                </button>
+            </div>
+        </div>
+    </div>
+</main>
+      
+    </div>
+    
+    <script src="../static/relatorios.js"></script>
+</body>
+</html>

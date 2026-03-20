@@ -1,0 +1,156 @@
+@import url('admin.css');
+
+/* 1. ESTRUTURA GLOBAL (IDÊNTICA AOS PRODUTOS) */
+.layout-wrapper {
+    display: flex;
+    width: 100%;
+    background-color: #0f172a; /* Garante que o fundo seja igual */
+}
+
+.sidebar {
+    width: 260px !important;
+    min-width: 260px !important;
+    flex-shrink: 0;
+}
+
+.main-content {
+    flex: 1;
+    min-width: 0;
+}
+
+/* 2. ESPAÇAMENTO LATERAL */
+.relatorios-container {
+    padding: 2.5rem; 
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* 3. GRID DE CARDS (IDÊNTICA À DOS PRODUTOS) */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px; /* Mesmo gap dos produtos */
+    margin-bottom: 35px;
+}
+
+/* 4. CARTÕES DE STATUS */
+.stat-card {
+    background-color: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 16px;
+    padding: 25px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: cardSlideUp 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+}
+
+.stat-label {
+    color: #94a3b8;
+    font-size: 0.75rem; /* Reduzi para igualar aos produtos */
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.stat-card h2 {
+    color: #f8fafc;
+    margin-top: 10px;
+    font-size: 1.5rem; /* Ajustado para não parecer "pesado" demais */
+    font-weight: 700;
+}
+
+/* 5. TABELA PREMIUM */
+.table-container {
+    background-color: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 16px;
+    padding: 25px;
+}
+
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.custom-table th {
+    text-align: left;
+    padding: 12px 15px;
+    color: #94a3b8;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    border-bottom: 1px solid #334155;
+    font-weight: 600;
+}
+
+.custom-table td {
+    padding: 18px 15px;
+    color: #f1f5f9;
+    border-bottom: 1px solid #1e293b;
+    font-size: 0.9rem;
+    font-weight: 400; 
+}
+
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes cardSlideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.text-green { color: #22c55e !important; font-weight: 600; }
+@import url('admin.css');
+
+/* Modal Largo para caber a tabela de conferência */
+.modal-largo {
+    max-width: 850px;
+    width: 95%;
+}
+
+/* Inputs da tabela de conferência */
+.input-conferencia {
+    width: 80px;
+    background: #0f172a;
+    border: 1px solid #334155;
+    color: white;
+    padding: 6px;
+    border-radius: 6px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.input-conferencia:focus {
+    border-color: #22c55e;
+    outline: none;
+}
+
+/* Estilo para a coluna de Inicial (leitura apenas) */
+.input-readonly {
+    background: transparent;
+    border: none;
+    color: #94a3b8;
+    cursor: default;
+}
+
+/* Alerta de erro no caixa */
+.caixa-errado {
+    border-color: #ef4444 !important;
+    background: rgba(239, 68, 68, 0.05) !important;
+}
+
+.btn-full {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    justify-content: center;
+}
+
+/* Badge de download */
+.btn-download {
+    color: #eab308;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: 0.2s;
+}
+
+.btn-download:hover {
+    transform: scale(1.2);
+}

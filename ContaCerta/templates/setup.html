@@ -1,34 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-ao">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ContaCerta - Setup Inicial</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../static/setup.css">
-    <title>Setup</title>
 </head>
 <body>
-    <div class="root">
+    
+    <div class="setup-wrapper">
         
-        <div class="container">
-            <div class="text">
-                <h1>Cadastre o Administrador</h1>
-                <p>Configuração inicial do sistema</p>
+        <div class="setup-card animate-entry">
+            
+            <div class="header-section">
+                <h1>Configuração Inicial</h1>
+                <p class="subtitle">Defina os dados do seu negócio</p>
             </div>
-            <div class="entradas">
+
+            <form class="setup-form">
                 
-                <input type="text" class="nome" placeholder="Nome">
-                <input type="email" class="email" placeholder="E-mail">
-                <input type="password" class="senha" placeholder="Senha">
-                <p class="resul"></p>
+                <div class="input-group">
+                    <label for="nome">Nome do Bar / Estabelecimento</label>
+                    <input type="text" id="nome" class="input-field nome" placeholder="Ex: Bar do Ponto" autocomplete="organization">
+                </div>
+
+                <div class="input-group">
+                    <label for="email">E-mail do Administrador</label>
+                    <input type="email" id="email" class="input-field email" placeholder="admin@contacerta.com" autocomplete="email">
+                </div>
+
+                <div class="input-group">
+                    <label for="senha">Senha de Acesso</label>
+                    <input type="password" id="senha" class="input-field senha" placeholder="Crie uma senha forte" autocomplete="new-password">
+                </div>
+
+                <div class="error-container">
+                    <p class="resul"></p>
+                </div>
+
+                <button type="button" class="btn-primary">
+                    <span class="btn-text">Concluir Setup</span>
+                    <span class="loader"></span>
+                </button>
+
+            </form>
+
+            <div class="footer-links">
+                <p>Já configurou? <a href="{{url_for('login')}}">Fazer Login</a></p>
             </div>
-            <div class="btao">
-                <button type="button" class="btn">Enviar</button>
-                
-            </div>
-           <a href="{{url_for('login')}}">Singup</a>
+
         </div>
     </div>
-    
+
     <script src="../static/setup.js"></script>
 </body>
 </html>

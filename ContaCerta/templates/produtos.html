@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-ao">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ContaCerta - Produtos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/admin.css">
+    <link rel="stylesheet" href="../static/produtos.css">
+</head>
+<body>
+    <div class="layout-wrapper">
+        <aside class="sidebar">
+    <div class="logo-area">
+        <div class="logo-icon"><i class="ri-store-3-fill"></i></div>
+        <span class="logo-text">ContaCerta</span>
+    </div>
+
+   <nav class="nav-links">
+    <a href="{{url_for('admin_painel')}}" class="nav-item {{ 'active' if request.endpoint == 'admin_painel' }}">
+        <i class="ri-dashboard-fill"></i>
+        <span>Dashboard</span>
+    </a>
+    <a href="{{url_for('vendas')}}" class="nav-item {{ 'active' if request.endpoint == 'vendas' }}">
+        <i class="ri-bar-chart-box-line"></i>
+        <span>Vendas</span>
+    </a>
+    <a href="{{url_for('produtos')}}" class="nav-item {{ 'active' if request.endpoint == 'produtos' }}">
+        <i class="ri-box-3-line"></i>
+        <span>Produtos</span>
+    </a>
+    <a href="{{url_for('relatorios')}}" class="nav-item">
+        <i class="ri-file-list-3-line"></i>
+        <span>Relatórios</span>
+    </a>
+</nav>
+
+    <div class="nav-footer">
+        <a href="{{url_for('logout')}}" class="nav-item logout">
+            <i class="ri-logout-box-line"></i>
+            <span>Sair</span>
+        </a>
+    </div>
+</aside>
+
+        <main class="main-content">
+            <header class="topbar">
+                <h2 class="page-title">Gerenciamento de Produtos</h2>
+                <div class="header-actions">
+                    <button class="btn-primary" id="btnNovoProduto"><i class="ri-add-line"></i> Novo Produto</button>
+                </div>
+            </header>
+
+            <div class="produtos-container">
+                <div class="produtos-grid" id="produtosGrid"></div>
+            </div>
+        </main>
+    </div>
+    <div class="modal-overlay" id="modalProduto">
+    <div class="modal-content animate-pop">
+        <div class="modal-header">
+            <h3>Novo Produto</h3>
+            <button class="btn-close" id="btnCloseModal"><i class="ri-close-line"></i></button>
+        </div>
+        
+        <form id="formProduto" class="modal-form">
+            <div class="input-group">
+                <label>Nome do Produto</label>
+                <input type="text" id="p_nome" placeholder="Ex: Cerveja Cuca" required>
+            </div>
+            
+            <div class="input-row">
+                <div class="input-group">
+                    <label>Quantidade</label>
+                    <input type="number" id="p_qtd" placeholder="0" required>
+                </div>
+                <div class="input-group">
+                    <label>Preço Compra (Kz)</label>
+                    <input type="number" id="p_compra" placeholder="0.00" step="0.01" required>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Preço Venda (Kz)</label>
+                <input type="number" id="p_venda" placeholder="0.00" step="0.01" required>
+            </div>
+
+            <div class="error-msg" id="msgErro"></div>
+
+            <button type="submit" class="btn-primary btn-full">
+                <span class="btn-text">Cadastrar Produto</span>
+                <span class="loader"></span>
+            </button>
+        </form>
+    </div>
+</div>
+<div class="modal-overlay" id="modalDetalhes">
+    <div class="modal-content animate-pop">
+        <div class="modal-header">
+            <h3>Detalhes do Produto</h3>
+            <button class="btn-close" id="btnCloseDetalhes"><i class="ri-close-line"></i></button>
+        </div>
+        
+        <form id="formEdicao" class="modal-form">
+            <input type="hidden" id="edit_id"> <div class="input-group">
+                <label>Nome do Produto</label>
+                <input type="text" id="edit_nome" required>
+            </div>
+            
+            <div class="input-row">
+                <div class="input-group">
+                    <label>Quantidade</label>
+                    <input type="number" id="edit_qtd" required>
+                </div>
+                <div class="input-group">
+                    <label>Preço Compra (AOA)</label>
+                    <input type="number" id="edit_compra" step="0.01" required>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Preço Venda (AOA)</label>
+                <input type="number" id="edit_venda" step="0.01" required>
+            </div>
+
+            <div class="modal-actions">
+                <button type="button" class="btn-delete" id="btnEliminar">
+                    <i class="ri-delete-bin-line"></i> Eliminar
+                </button>
+                <button type="submit" class="btn-primary">
+                    Atualizar Dados
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+    <script src="../static/produtos.js"></script>
+</body>
+</html>

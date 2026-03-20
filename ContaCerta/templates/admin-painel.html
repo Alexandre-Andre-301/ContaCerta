@@ -1,60 +1,113 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-ao">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../static/logo.png" type="image/x-icon">
+    <title>ContaCerta - Dashboard</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    
     <link rel="stylesheet" href="../static/admin.css">
-    <title>Painel Principal</title>
 </head>
 <body>
-    <div class="root">
-    
-        <div class="side-bar">
-            <div class="logo-bar">
-                <img src="../static/logo.png" class="logo">
-            </div>
-            <div class="linha"></div><div class="cards">
-    
-                    <div class="card"><a href="#">Painel</a></div>
-            </div>
-            <div class="cards">
-                <div class="card"><a href="#">Vendas</a></div>
-                <div class="card"><a href="#">Protudos</a></div>
-                <div class="card"><a href="#">Estoque</a></div>
-            <div class="linha"></div>
-                <div class="card"><a href="{{url_for('logout')}}">Sair</a></div>
-            </div>
-            </div>
-    <div class="main-content">
+
+    <div class="layout-wrapper">
         
-                <div class="header">
-        
-                            <h1>Painel Principal</h1>
-                            <div class="nav">
-                                <div class="notification"><img src="" alt="notification"></div>
-                                <div class="avatar"><img src="" alt="avatar-user"></div>
-                            </div>
-                        </div>
-                <div class="main-cards">
-                    <div class="main-card">
-                        <p>Vendas de Hoje</p>
-                        <h1 class="vendas">25.000Kzs</h1>
-                    </div>
-                    
-                    <div class="main-card">
-                        <p>Produtos</p>
-                        <h1 class="produtos">18</h1>
-                    </div>
-                    <div class="main-card">
-                        <p>Lucro</p>
-                        <h1 class="lucro">8.00Kzs</h1>
-                    </div>
-                </div>
-                
-    </div>
+        <aside class="sidebar">
+            <div class="logo-area">
+                <div class="logo-icon"><i class="ri-store-3-fill"></i></div>
+                <span class="logo-text">ContaCerta</span>
             </div>
 
+            <nav class="nav-links">
+                <a href="{{url_for('admin_painel')}}" class="nav-item active">
+                    <i class="ri-dashboard-fill"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="{{url_for('vendas')}}" class="nav-item">
+                    <i class="ri-bar-chart-box-line"></i>
+                    <span>Vendas</span>
+                </a>
+                <a href="{{url_for('produtos')}}" class="nav-item">
+                    <i class="ri-box-3-line"></i>
+                    <span>Produtos</span>
+                </a>
+                <a href="{{url_for('relatorios')}}" class="nav-item">
+                    <i class="ri-file-list-3-line"></i>
+                    <span>Relatórios</span>
+                </a>
+            </nav>
+
+            <div class="nav-footer">
+                <a href="{{url_for('logout')}}" class="nav-item logout">
+                    <i class="ri-logout-box-line"></i>
+                    <span>Sair</span>
+                </a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            
+            <header class="topbar">
+                <h2 class="page-title">Dashboard</h2>
+                
+                <div class="user-area">
+                    <button class="icon-btn notification-btn">
+                        <i class="ri-notification-3-line"></i>
+                        <span class="dot"></span>
+                    </button>
+                    <div class="avatar">
+                        <img src="https://i.pravatar.cc/150?img=11" alt="User">
+                    </div>
+                </div>
+            </header>
+
+            <div class="dashboard-grid">
+                
+                <div class="card card-dark">
+                    <div class="card-header">
+                        <span>Vendas Hoje</span>
+                    </div>
+                    <div class="card-value">
+                        <span class="currency">Kz</span>
+                        <span class="counter" data-target="25000">0</span>
+                    </div>
+                    <div class="card-pattern">
+                        <span></span><span></span><span></span><span></span>
+                    </div>
+                </div>
+
+                <div class="card card-dark">
+                    <div class="card-header">
+                        <span>Produtos</span>
+                    </div>
+                    <div class="card-value">
+                        <span class="counter" data-target="18">0</span>
+                    </div>
+                    <div class="card-pattern">
+                        <span></span><span></span><span></span><span></span>
+                    </div>
+                </div>
+
+                <div class="card card-green">
+                    <div class="card-header">
+                        <span>Lucro</span>
+                    </div>
+                    <div class="card-value">
+                        <span class="currency">Kz</span>
+                        <span class="counter" data-target="8500">0</span>
+                    </div>
+                    <div class="card-pattern pattern-light">
+                        <span></span><span></span><span></span><span></span>
+                    </div>
+                </div>
+
+            </div>
+
+        </main>
+    </div>
 
     <script src="../static/admin.js"></script>
 </body>
