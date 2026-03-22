@@ -20,42 +20,62 @@ app.config['MAX_CONTENT_LENGTH'] = 2 * 1024 * 1024
 def redirecionar():
     return  redirect(url_for('login'))
 
-@app.route('/auth/setup',methods = ["GET","POST"])
+@app.route('/auth/setup', methods=["GET", "POST"])
 def setup():
     if request.method == "GET":
-      return  render_template('setup.html')
+        return render_template('setup.html')
     else:
         data = request.get_json()
-        nome = data.get('nome','').strip()
-        email= data.get('email','').strip()
-        senha = data.get('senha','').strip()
-        senha_hash = generate_password_hash(senha)
-        if not nome or not email or not senha:
-          return jsonify({
-                  'status' : "error",
-                'message': "Preencha bem os Campos!"
-            }),400
-        else:
-            try:
-                conn = sqlite3.connect('users.db')
-                cursor = conn.cursor()
-                cursor.execute("""
-                    INSERT INTO users (nome,email,senha) VALUES(?,?,?)           
-                    """,(nome,email,senha_hash))
-                conn.commit()
-                return jsonify({
-                    'status' : "ok",
-                    'message': f"{nome} Cadastrado com sucesso!",
-                    'redirect': url_for('login')
-                })
-            except sqlite3.IntegrityError:
-                return jsonify({
-                    'status': 'error',
-                    'message': 'Este email já está cadastrado'
-                }), 409
-            finally:
-                conn.close()
+        nome = data.get('nome', '').strip()
+        email = data.get('email', '').strip()
+        senha = data.get('senha', '').strip()
         
+        if not nome or not email or not senha:
+            return jsonify({
+                'status': "error",
+                'message': "Preencha todos os campos!"
+            }), 400
+            
+        senha_hash = generate_password_hash(senha)
+
+        try:
+            conn = sqlite3.connect('users.db')
+            cursor = conn.cursor()
+
+            # --- NOVA TRAVA DE SEGURANÇA: Limite de 2 usuários ---
+            cursor.execute("SELECT COUNT(*) FROM users")
+            total_usuarios = cursor.fetchone()[0]
+
+            if total_usuarios >= 2:
+                conn.close()
+                return jsonify({
+                    'status': 'error', 
+                    'message': 'Limite de utilizadores do sistema atingido (Máx: 2).'
+                }), 403 # 403 é o erro de "Proibido"
+
+            cursor.execute("""
+                INSERT INTO users (nome, email, senha) VALUES (?, ?, ?)           
+            """, (nome, email, senha_hash))
+            
+            conn.commit()
+            return jsonify({
+                'status': "ok",
+                'message': f"{nome} cadastrado com sucesso!",
+                'redirect': url_for('login')
+            })
+
+        except sqlite3.IntegrityError:
+            return jsonify({
+                'status': 'error',
+                'message': 'Este e-mail já está cadastrado'
+            }), 409
+        except Exception as e:
+            return jsonify({
+                'status': 'error',
+                'message': f'Erro no servidor: {str(e)}'
+            }), 500
+        finally:
+            conn.close()
 @app.route('/login',methods= ["GET","POST"])
 def login():
      if request.method == "GET":
