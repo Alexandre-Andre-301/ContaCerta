@@ -38,6 +38,23 @@
                     <span class="btn-text">Entrar</span>
                     <span class="loader"></span> </button>
              </form>
+             <div style="text-align: center; margin-top: 15px;">
+    <a href="javascript:void(0)" onclick="abrirModalEsqueci()" style="color: var(--text-muted); font-size: 13px; text-decoration: none;">Esqueceu-se da palavra-passe?</a>
+</div>
+
+<div id="modalRecuperar" style="display:none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 1000; align-items: center; justify-content: center; padding: 20px;">
+    <div style="background: var(--bg-card); padding: 30px; border-radius: 16px; width: 100%; max-width: 350px; border: 1px solid var(--border-color); text-align: center;">
+        <h3 style="color: var(--text-white); margin-bottom: 10px;">Recuperar Acesso</h3>
+        <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 20px;">Introduza o seu e-mail para receber uma senha temporária.</p>
+        
+        <input type="email" id="emailRecuperar" class="input-field" placeholder="seu-email@exemplo.com" style="margin-bottom: 20px;">
+        
+        <div style="display: flex; gap: 10px;">
+            <button onclick="fecharModalEsqueci()" style="flex: 1; padding: 12px; border-radius: 8px; border: 1px solid var(--border-color); background: transparent; color: var(--text-white); cursor: pointer;">Cancelar</button>
+            <button id="btnEnviarRecuperacao" onclick="enviarRecuperacao()" style="flex: 2; padding: 12px; border-radius: 8px; border: none; background: var(--primary-green); color: white; font-weight: 600; cursor: pointer;">Enviar E-mail</button>
+        </div>
+    </div>
+</div>
 
              <div class="footer-links">
                  <p>Não tem uma conta? <a href="{{url_for('setup')}}">Criar conta</a></p>

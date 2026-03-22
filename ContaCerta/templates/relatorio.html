@@ -141,9 +141,69 @@
         </div>
     </div>
 </main>
+<div id="modalConferencia" class="modal-overlay" style="display:none;">
+    <div class="modal-content modal-largo animate-pop">
+        <div class="modal-header">
+            <div>
+                <h3>Nova Conferência de Bar</h3>
+                <p class="text-muted" style="font-size: 0.8rem;">Controle de Inicial vs Final</p>
+            </div>
+            <button class="btn-close" onclick="fecharModalConferencia()">&times;</button>
+        </div>
+        
+        <div class="modal-body">
+            <div class="table-scroll" style="max-height: 400px; overflow-y: auto;">
+                <table class="custom-table">
+                    <thead>
+                        <tr>
+                            <th>Produto</th>
+                            <th>Inicial</th>
+                            <th>Final (Restou)</th>
+                            <th>Venda</th>
+                            <th>Subtotal</th>
+                        </tr>
+                    </thead>
+                    <tbody id="corpoConferencia">
+                        </tbody>
+                </table>
+            </div>
+
+            <div class="financeiro-footer">
+                <div class="input-grid">
+                    <div class="field">
+                        <label>DINHEIRO EM MÃO</label>
+                        <input type="number" id="cashInput" oninput="validarFinanceiro()" placeholder="0">
+                    </div>
+                    <div class="field">
+                        <label>TPA (MULTICAIXA)</label>
+                        <input type="number" id="tpaInput" oninput="validarFinanceiro()" placeholder="0">
+                    </div>
+                </div>
+                
+                <div id="statusCaixa" class="resumo-caixa">
+                    <div class="resumo-linha">
+                        <span>Total Esperado: <b id="valorEsperado">0,00 AOA</b></span>
+                        <span>Total Informado: <b id="valorInformado">0,00 AOA</b></span>
+                    </div>
+                    <p id="msgAlerta" class="alerta-quebra" style="display:none;">
+                        <i class="ri-error-warning-fill"></i> Atenção: Existe uma quebra no valor informado!
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn-primary btn-full" onclick="salvarRelatorioFinal()">
+                <i class="ri-save-3-line"></i> Finalizar e Salvar Relatório
+            </button>
+        </div>
+    </div>
+</div>
       
     </div>
     
     <script src="../static/relatorios.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
 </body>
 </html>

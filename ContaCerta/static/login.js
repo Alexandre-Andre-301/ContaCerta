@@ -62,3 +62,45 @@ document.addEventListener('keypress', function (e) {
         btnEl.click();
     }
 });
+function abrirModalEsqueci() {
+    document.getElementById('modalRecuperar').style.display = 'flex';
+}
+
+function fecharModalEsqueci() {
+    document.getElementById('modalRecuperar').style.display = 'none';
+}
+
+async function enviarRecuperacao() {
+    const email = document.getElementById('emailRecuperar').value;
+    const btn = document.getElementById('btnEnviarRecuperacao');
+
+    if (!email) {
+        alert("Por favor, introduza o seu e-mail.");
+        return;
+    }
+
+    btn.innerText = "A enviar...";
+    btn.disabled = true;
+
+    try {
+        const response = await fetch('/api/recuperar-senha', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: email })
+        });
+
+        const data = await response.json();
+
+        if (data.status === 'ok') {
+            alert("Sucesso! Verifique o seu e-mail para obter a nova senha.");
+            fecharModalEsqueci();
+        } else {
+            alert("Erro: " + data.message);
+        }
+    } catch (error) {
+        alert("Erro de conexão ao servidor.");
+    } finally {
+        btn.innerText = "Enviar E-mail";
+        btn.disabled = false;
+    }
+}
