@@ -1,30 +1,42 @@
-🍺 ContaCerta
+🍻 ContaCerta
 
-Sistema web de gestão para bares e pequenos estabelecimentos.
+ContaCerta é um sistema web desenvolvido para auxiliar bares, restaurantes e pequenos estabelecimentos no gerenciamento de produtos, estoque, vendas e conferência de caixa.
 
-O ContaCerta é um sistema desenvolvido para auxiliar proprietários de bares e pequenos comércios a controlar o estoque, gerenciar produtos e acompanhar informações importantes sobre o funcionamento do estabelecimento.
+O projeto nasceu a partir de um problema real observado em um bar familiar, onde o controle era feito em cadernos, ocasionando divergências nas contas, dificuldades no acompanhamento do estoque e falta de informações para tomada de decisão.
 
-O projeto nasceu da observação de um problema real: muitos pequenos negócios ainda utilizam cadernos para registrar entradas e saídas de produtos, o que pode gerar erros de contagem, perdas financeiras e dificuldade na gestão do estoque.
+O objetivo do ContaCerta é substituir esse processo manual por uma plataforma simples, rápida e intuitiva.
 
 🚀 Funcionalidades
-🔐 Autenticação de administrador
-👤 Configuração inicial do sistema (Setup)
-📦 Gestão de produtos (CRUD)
-📊 Dashboard administrativo
-📈 Relatórios de conferência
-📱 Interface moderna e intuitiva
-🌙 Tema Dark Mode
-🛠 Tecnologias Utilizadas
+🔐 Sistema de autenticação
+Cadastro do administrador
+Login seguro utilizando hash de senhas
+📦 Gerenciamento de produtos
+Cadastro
+Edição
+Exclusão
+Consulta
+📊 Dashboard
+Resumo do negócio
+Produtos cadastrados
+Navegação rápida
+📑 Relatórios
+Histórico de conferências
+Controle de caixa
+Diferenças entre valor esperado e valor encontrado
+🛡️ Controle de sessão
+Rotas protegidas
+Apenas usuários autenticados possuem acesso ao painel.
+🛠️ Tecnologias utilizadas
 Backend
 Python
 Flask
-SQLite
-Werkzeug (Hash de senhas)
+SQLite3
+Werkzeug (Password Hash)
 Frontend
 HTML5
 CSS3
-JavaScript
-📂 Estrutura do Projeto
+JavaScript (Vanilla JS)
+📁 Estrutura do projeto
 ContaCerta/
 │
 ├── static/
@@ -44,38 +56,48 @@ ContaCerta/
 └── README.md
 🎯 Objetivo
 
-O objetivo do ContaCerta é oferecer uma solução simples, rápida e eficiente para pequenos estabelecimentos que desejam abandonar os registros em papel e começar a gerir o seu negócio de forma digital.
+Este projeto foi desenvolvido com dois propósitos principais:
 
-🔒 Segurança
+Resolver um problema real encontrado em pequenos negócios.
+Evoluir minhas habilidades em desenvolvimento backend utilizando Flask.
 
-Atualmente o sistema conta com:
+Embora meu principal objetivo profissional seja atuar na área de Cyber Security, acredito que compreender profundamente o funcionamento de aplicações web é uma etapa essencial para qualquer futuro Pentester.
 
-Senhas protegidas utilizando hash (Werkzeug Security)
-Sessões para autenticação
-Rotas protegidas
-Validação de dados recebidos
-📌 Próximas Funcionalidades
- Gestão de vendas
- Controle automático de estoque
- Cadastro de funcionários
- Histórico de movimentações
- Exportação de relatórios em PDF
- Dashboard com gráficos
- Integração com IA para análise de vendas e geração de insights
- Backup automático do banco de dados
- API REST completa
-💡 Motivação
+🔮 Próximas funcionalidades
+Cadastro de vendas
+Controle automático de estoque
+Dashboard com gráficos
+Pesquisa de produtos
+Exportação de relatórios em PDF
+Controle de funcionários
+Controle de permissões
+Backup automático do banco
+API REST
+Versão Mobile
+Integração com Inteligência Artificial para geração de insights do negócio
+📸 Preview
 
-Este projeto foi desenvolvido durante os meus estudos como forma de colocar em prática conhecimentos de desenvolvimento web e backend.
+Em desenvolvimento.
 
-Embora o meu principal objetivo seja seguir carreira em Cibersegurança, acredito que compreender como aplicações são construídas é um passo fundamental para desenvolver sistemas mais seguros e identificar vulnerabilidades de forma responsável.
+📚 Aprendizados
 
+Durante o desenvolvimento deste projeto pratiquei conceitos como:
+
+Organização de projetos Flask
+CRUD
+Autenticação
+Hash de senhas
+Sessões
+SQLite
+Comunicação Frontend ↔ Backend
+Manipulação do DOM
+Estruturação de sistemas reais
 👨‍💻 Autor
 
 Alexandre
 
-Estudante da 11ª Classe (Ensino Médio)
+Estudante da 11ª Classe em Gestão de Sistemas Informáticos.
 
-🎯 Interesse em Backend, Cibersegurança e Desenvolvimento de Software.
+Meu foco principal é a área de Cyber Security, especialmente Pentest, porém acredito que dominar desenvolvimento web é um passo fundamental para compreender como aplicações funcionam e, consequentemente, como podem ser protegidas.
 
-⭐ Se gostaste do projeto, considera deixar uma estrela no repositório e contribuir com sugestões ou melhorias.
+⭐ Se este projeto foi interessante para você, deixe uma estrela no repositório!
